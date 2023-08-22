@@ -1,0 +1,181 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "src/player.cpython-39-darwin.so"
+		}
+	],
+	"backtrace" : 2,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"nanobind_add_module",
+			"target_link_options",
+			"nanobind_link_options",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/nanobind/cmake/nanobind-config.cmake",
+			"src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 10,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 279,
+				"parent" : 1
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 282,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 84,
+				"parent" : 3
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 324,
+				"parent" : 1
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " --std=c++23 -O3 -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -fPIC -fvisibility=hidden"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"define" : "player_EXPORTS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 5,
+					"path" : "/Users/kevinnguyen/miniforge3/envs/my_tf_env/include/python3.9"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/nanobind/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/Users/kevinnguyen/Documents/Python files/C++ Connect 4/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/tensorflow/include"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 5,
+			"id" : "nanobind-static::@145eef247bfb46b6828c"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "lib::@145eef247bfb46b6828c"
+		}
+	],
+	"id" : "player::@145eef247bfb46b6828c",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-Wl,@/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/nanobind/cmake/darwin-ld-cpython.sym",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/tensorflow",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "src/libnanobind-static.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "src/liblib.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/tensorflow/libtensorflow_cc.2.dylib",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "player",
+	"nameOnDisk" : "player.cpython-39-darwin.so",
+	"paths" : 
+	{
+		"build" : "src",
+		"source" : "src"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/Player.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "MODULE_LIBRARY"
+}

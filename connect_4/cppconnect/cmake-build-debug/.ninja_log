@@ -1,0 +1,22 @@
+# ninja log v5
+1290	1334	1692513990055120019	bin/C___Connect_4	7168150ec87ef538
+0	161	1692572881088977886	build.ninja	bfe6b402cb357b11
+1	1203	1692503425203847750	src/CMakeFiles/nanobind-static.dir/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/nanobind/src/nb_enum.cpp.o	a9b326c52ac5c5d5
+1	1342	1692503425342860213	src/CMakeFiles/nanobind-static.dir/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/nanobind/src/nb_func.cpp.o	595cd0af5c7696b2
+24	1219	1692503425219932598	src/CMakeFiles/nanobind-static.dir/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/nanobind/src/implicit.cpp.o	3983388e3cd91008
+3	1289	1692513990008513666	bin/CMakeFiles/C___Connect_4.dir/main.cpp.o	92b944c78631b9ca
+5	1747	1692514065383522940	src/CMakeFiles/lib.dir/Tree_search.cpp.o	d2826c729284679f
+24	1187	1692503425185271837	src/CMakeFiles/nanobind-static.dir/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/nanobind/src/trampoline.cpp.o	4a71a45e21e13107
+5	1608	1692514065245268799	src/CMakeFiles/player.dir/Player.cpp.o	3144cf12b5b5673d
+24	1197	1692503425198819581	src/CMakeFiles/nanobind-static.dir/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/nanobind/src/nb_static_property.cpp.o	44f7445081ddb8d8
+1747	1779	1692514065417824000	src/liblib.a	147be9054e4e1a0
+0	1248	1692503425250031360	src/CMakeFiles/nanobind-static.dir/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/nanobind/src/nb_internals.cpp.o	6c1bc313b127380a
+4	1411	1692503664989730623	src/CMakeFiles/player.dir/__/bin/main.cpp.o	8c3f65f2cc242bc7
+1465	1522	1692503425526517000	src/libnanobind-static.a	1dcf4bbc2d8b3e0d
+0	1040	1692503425040208987	src/CMakeFiles/player.dir/GameStorage.cpp.o	17dcaf4c2f34c56a
+24	1288	1692503425289426246	src/CMakeFiles/nanobind-static.dir/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/nanobind/src/common.cpp.o	2f5cea09bba56ee8
+1	1465	1692503425466105747	src/CMakeFiles/nanobind-static.dir/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/nanobind/src/nb_type.cpp.o	b11e2dc5fcd150e1
+0	1266	1692503425266931633	src/CMakeFiles/nanobind-static.dir/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/nanobind/src/error.cpp.o	b9c5a184e2a2c1d4
+1	1301	1692503425302185899	src/CMakeFiles/nanobind-static.dir/Users/kevinnguyen/miniforge3/envs/my_tf_env/lib/python3.9/site-packages/nanobind/src/nb_ndarray.cpp.o	56d917b10312aae9
+1779	1835	1692514065472272105	src/player.cpython-39-darwin.so	4f19c6ed90433608
+5	1142	1692514064778621066	src/CMakeFiles/lib.dir/Game_controller.cpp.o	bb4e86dfacefad52

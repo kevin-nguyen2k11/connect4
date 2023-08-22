@@ -1,0 +1,7 @@
+/Users/kevinnguyen/Documents/Python files/connect_4/modules/build/CMakeFiles/rebuild_cache.dir
+/Users/kevinnguyen/Documents/Python files/connect_4/modules/build/CMakeFiles/edit_cache.dir
+/Users/kevinnguyen/Documents/Python files/connect_4/modules/build/src/CMakeFiles/rebuild_cache.dir
+/Users/kevinnguyen/Documents/Python files/connect_4/modules/build/src/CMakeFiles/edit_cache.dir
+/Users/kevinnguyen/Documents/Python files/connect_4/modules/build/src/CMakeFiles/nanobind-static.dir
+/Users/kevinnguyen/Documents/Python files/connect_4/modules/build/src/CMakeFiles/cppconnect.dir
+/Users/kevinnguyen/Documents/Python files/connect_4/modules/build/src/CMakeFiles/lib.dir
