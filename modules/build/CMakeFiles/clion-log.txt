@@ -1,0 +1,5 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -DCMAKE_C_COMPILER=/opt/homebrew/Cellar/gcc/13.2.0/bin/gcc-13 -DCMAKE_CXX_COMPILER=/opt/homebrew/Cellar/gcc/13.2.0/bin/g++-13 -G Ninja "/Users/kevinnguyen/Documents/Python files/connect_4/cppconnect"
+-- CMAKE_MODULE_PATH=";/Users/kevinnguyen/Documents/Python files/connect_4/cppconnect/cmake"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/kevinnguyen/Documents/Python files/connect_4/modules/build
