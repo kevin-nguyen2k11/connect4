@@ -13,16 +13,10 @@ from keras import regularizers
 
 def save_model(model,version):
     directory=os.path.join(config.model_directory,version)
-    # for file in os.listdir(directory):
-    #     os.remove(os.path.join(directory,file))
-    # checkpoint.save(os.path.join(directory,'model'))
-    # model.save_weights(directory+'/'+version+'/model')
     keras.models.save_model(model,directory,save_format='tf')
 
 def get_model(version):
     directory=os.path.join(config.model_directory,version)
-    # model=keras.models.load_model(directory)
-    # print(model.get_weights())
     try:
         return keras.models.load_model(directory)
     except ValueError:
@@ -317,49 +311,3 @@ def train_opt(train,max_epochs,args):
         os.mkdir('./models/'+filename)
         save_model(model,filename)
         return model
-
-
-# def evaluate_model(new_latest,new_best,terminate_event):
-#     print('Started evaluate process')
-#     signal.signal(signal.SIGINT,signal.SIG_IGN)
-#     logging.basicConfig(filename='logs/evaluate.log',filemode='a',
-#                         format='%(asctime)s %(levelname)s:%(message)s',level=logging.DEBUG)
-#     eval_logger=logging.getLogger('eval_logger')
-#     eval_logger.addFilter(DelayFilter(600))
-#     while not terminate_event.is_set():
-#         if not new_latest.is_set():
-#             eval_logger.info('Waiting for new model to evaluate')
-#             time.sleep(120)
-#             continue
-#         logging.info('Starting')
-#         latest_model=get_model('latest')
-#         new_latest.clear()
-#         best_model=get_model('best')
-#         latest_wins=0
-#         draws=0
-#         for i in range(config.num_eval_games):
-#             if((i+1)%10==0):
-#                 logging.info('Total games: %d',(i+1))
-#             game=g.GameController()
-#             trees=[MonteCarloTree(best_model,noise=False),MonteCarloTree(latest_model,noise=False)]
-#             current_player=i%2
-#             while game.win_state is None:
-#                 move,pi=trees[current_player].choose_move(game,temperature=0)
-#                 current_player^=1
-#                 trees[current_player].opponent_move(move)
-#                 game.make_move(move)
-#             if game.win_state==0:
-#                 draws+=1
-#             elif not current_player:
-#                 latest_wins+=1
-#         if draws==config.num_eval_games:
-#             logging.info('Ending with all draws')
-#             continue
-#         if (latest_wins/(config.num_eval_games))>=config.win_margin or (latest_wins>=45 and draws>=50):
-#             save_model(latest_model,'best')
-#             for event in new_best:
-#                 event.set()
-#             logging.info('Updated best model')
-#         logging.info('Finished evaluation with %f win rate',(latest_wins/(config.num_eval_games)))
-#         logging.info('Wins: %d Losses: %d Draws: %d',latest_wins,config.num_eval_games-latest_wins-draws,draws)
-#     logging.info('Ending')

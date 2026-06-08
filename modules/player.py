@@ -6,16 +6,12 @@ import signal
 import logging
 import time
 import shutil
-import os
 
 def pipe_full(conn):
     r,w,x=select.select([],[conn],[],0.0)
     return 0==len(w)
 
 def self_play(send_game,new_best,terminate_event,id):
-    import modules.model as m
-    import modules.game as g
-    import numpy as np
     print('Started self play process:',id)
     signal.signal(signal.SIGINT,signal.SIG_IGN)
     logging.basicConfig(filename='logs/self_play_{}.log'.format(id),filemode='a',
@@ -31,34 +27,11 @@ def self_play(send_game,new_best,terminate_event,id):
             self_player.load_model(config.model_directory+'/best')
             logging.info('Loaded new best model')
             new_best[id].clear()
-        # game_batch.append(self_player.play_game())
         game=self_player.play_game()
         if game[2]==0:
-            # logging.info('Draw')
             if draws>=2:
                 continue
             draws+=1
-        # elif len(game[0])%2!=1:
-        #     logging.info('Loss with %d moves',len(game[0]))
-        #     model=m.get_model('best')
-        #     thing1=g.GameStorage()
-        #     temp1=game[1]
-        #     for i in range(len(game[0])):
-        #         state=thing1.state_from_hist(game[0],i)
-        #         logging.info(np.flip(state[:,:,0]+state[:,:,1]*2,0))    
-        #         row,col=game[0][i]
-        #         factor=1 if i%2==len(game[0])%2 else -1
-        #         value=factor*game[2]
-        #         logging.info("MOVE: %d %d",row,col)
-        #         logging.info("POLICY: %s",np.array2string(temp1[i]))
-        #         logging.info("VALUE: %f",value)
-        #         predictions=model(np.expand_dims(state,0),training=False)
-        #         policies=predictions[0].numpy()
-        #         logging.info("PREDICTED POLICY: %s",np.array2string(policies))
-        #         logging.info("PREDICTED VALUE: %f",np.asarray(predictions[1]))
-        #     continue
-        # else:
-        #     logging.info('Total: %d',total_games+1)
         game_batch.append(game)
         total_games+=1
         if(total_games%10==0):

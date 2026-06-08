@@ -2,9 +2,9 @@ class Config:
     #Game specific settings
     width=7
     height=6
-    # win_length=4
+    win_length=4
     max_moves=width*height
-    # dirs=[(1,0),(1,1),(0,1),(-1,1)]
+    dirs=[(1,0),(1,1),(0,1),(-1,1)]
     
     #Self play
     max_saved_games=160000
@@ -12,7 +12,7 @@ class Config:
     # num_high_temp_moves=5
     # num_simulations=2000
     # num_threads=10
-    buffer_directory='/Users/kevinnguyen/Documents/Python files/connect_4/data'
+    buffer_directory='./data'
 
     #Root prior exploration noise
     # alpha=0.1
@@ -36,7 +36,7 @@ class Config:
     batches_per_epoch=5
 
     #Model settings
-    model_directory='/Users/kevinnguyen/Documents/Python files/connect_4/models'
+    model_directory='./models'
     num_blocks=3
     num_filters=128
     momentum=(0.85,0.95)
