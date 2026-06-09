@@ -1,0 +1,21 @@
+name: connect4
+channels:
+  - apple
+  - conda-forge
+dependencies:
+  - python=3.9.16
+  - notebook
+  - ipykernel
+  - numpy
+  - matplotlib
+  - tensorflow-deps
+  - nanobind
+  - pip
+  - pip:
+      - hyperopt
+      - tensorboard==2.13.0
+      - tensorboard-data-server==0.7.0
+      - tensorflow==2.13.0
+      - tensorflow-estimator==2.13.0
+      - tensorflow-macos==2.13.0
+      - tensorflow-metal==1.0.1

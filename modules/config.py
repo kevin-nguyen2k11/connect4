@@ -9,8 +9,8 @@ class Config:
     #Self play
     max_saved_games=160000
     num_simultaneous_games=8
-    # num_high_temp_moves=5
-    # num_simulations=2000
+    # num_high_temp_moves=20
+    # num_simulations=400
     # num_threads=10
     buffer_directory='./data'
 
@@ -20,7 +20,7 @@ class Config:
 
     #UCB formula
     # c_base=500
-    # c_init=1.05
+    # c_init=1.25
     
     #Evaluation
     num_eval_games=100 #caution, change in cpp code as well
@@ -30,14 +30,14 @@ class Config:
     train_multiprocess=False
     num_workers=10
     batch_size=4096
-    initial_epoch=92600
+    initial_epoch=0
     epochs_per_update=10
     epochs_per_checkpoint=2000
     batches_per_epoch=5
 
     #Model settings
     model_directory='./models'
-    num_blocks=3
+    num_blocks=5
     num_filters=128
     momentum=(0.85,0.95)
     weight_decay=0.0001
