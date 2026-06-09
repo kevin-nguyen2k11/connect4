@@ -5,6 +5,7 @@ import multiprocessing
 from multiprocessing import Manager
 import time
 import itertools as iter
+from pathlib import Path
 
 def evaluate(pipe,ready_list,id):
     logging.basicConfig(filename='tournament_logs/evaluate_{}.log'.format(id),filemode='a',

@@ -4,8 +4,14 @@ import modules.model as m
 from modules.game import GameStorage
 import multiprocessing
 import time
+from pathlib import Path
 
 if __name__=='__main__':
+    Path(config.buffer_directory).mkdir(exist_ok=True)
+    Path(config.model_directory+'/best').mkdir(exist_ok=True)
+    Path(config.model_directory+'/latest').mkdir(exist_ok=True)
+    Path(config.model_directory+'/test').mkdir(exist_ok=True)
+    Path('./logs').mkdir(exist_ok=True)
     m.bootstrap_model()
     new_latest=multiprocessing.Event()
     new_best=[multiprocessing.Event() for _ in range(config.num_simultaneous_games)]
