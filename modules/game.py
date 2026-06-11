@@ -191,7 +191,7 @@ class GameStorage(tf.keras.utils.Sequence):
                     self.buffer=buffer
                 print('Loaded',self.directory+'/buffer.dat')
         except OSError:
-            print('Unable to load or could not find',self.directory+'/buffer.dat')
+            # print('Unable to load or could not find',self.directory+'/buffer.dat') 
             return
         for i,game in enumerate(self.buffer):
             if not game:

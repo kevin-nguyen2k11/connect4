@@ -132,8 +132,9 @@ class EarlyStoppingByLossVal(keras.callbacks.Callback):
 
 class LRFinder(keras.callbacks.Callback):
 
-    def __init__(self,epochs=500,min=1e-9,max=1e-1,smoothing=0.005):
+    def __init__(self,logger,epochs=200,min=1e-9,max=1e-1,smoothing=0.005):
         super().__init__()
+        self.logger=logger
         self.epochs=epochs
         self.iters=epochs*config.batches_per_epoch
         self.smoothing=smoothing
@@ -158,16 +159,12 @@ class LRFinder(keras.callbacks.Callback):
         test_model.fit(
             x=game_storage,
             epochs=self.epochs,
-            callbacks=[self],
+            callbacks=[self,self.logger],
             max_queue_size=10,
             workers=config.num_workers,
             use_multiprocessing=config.train_multiprocess,
             verbose=0
         )
-        import pickle
-        thing=(self.lr_list,self.loss_list)
-        with open('/Users/kevinnguyen/Documents/Python files/connect_4/lrfinder.dat','wb') as f:
-            pickle.dump((thing),f)
         return self.valley()
 
     def valley(self):
@@ -219,11 +216,11 @@ def train_model(recieve_pipe_list,new_latest,game_storage):
     start_time=datetime.now()
     tf.get_logger().setLevel('ERROR')
     logging.basicConfig(filename='logs/train.log',filemode='a',
-                        format='%(asctime)s %(levelname)s:%(message)s',level=logging.DEBUG)
+                        format='%(asctime)s %(levelname)s:%(message)s',level=logging.DEBUG, force=True)
     train_logger=logging.getLogger('train_logger')
     train_logger.addFilter(DelayFilter(300))
     logger_callback=LoggingCallback(logging.info)
-    lr_finder=LRFinder()
+    lr_finder=LRFinder(logger_callback)
     annealer=Annealer()
     non_hidden_files=[f for f in os.listdir(os.path.join(config.model_directory,'latest')) if not f.startswith('.')]
     if not non_hidden_files:
@@ -246,6 +243,7 @@ def train_model(recieve_pipe_list,new_latest,game_storage):
                 continue
             if not np.any(annealer.lr_list):
                 if np.isnan(max_lr):
+                    logging.info('Finding new lr')
                     max_lr=lr_finder.get_max_lr(game_storage)
                 logging.info('Setting max lr to %f',max_lr)
                 annealer.set_max_lr(max_lr,epochs%config.epochs_per_checkpoint)
