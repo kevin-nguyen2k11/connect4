@@ -22,7 +22,7 @@ This project was written and run on a M1 Macbook. If you are on a different plat
 
 ## Demonstration
 
-demo.ipynb is a Jupyter Notebook where you can try playing against a trained model as well as see its calculated move probabilities. A pre-trained model has been included in models/best. Note that the model will be slower than during actual self-play as this notebook does not use the C++ tree search code, instead it is written in Python so that we can easily examine each step of the tree search. 
+demo.ipynb is a Jupyter Notebook where you can try playing against a trained model as well as see its calculated move probabilities. A pre-trained model has been included in models/demo. Note that the model will be slower than during actual self-play as this notebook does not use the C++ tree search code, instead it is written in Python so we can easily examine each step of the tree search. 
 
 ```bash
 jupyter notebook demo.ipynb
@@ -32,15 +32,29 @@ jupyter notebook demo.ipynb
  
 ## Training your own model
 
-To begin training from scratch, first ensure models/best/ is empty. Modify hyperparameters found in modules/config.py as desired. Note that hyperparameters related to tree search are found instead in cppconnect/include/Config.h and require recompilation after changing. Then simply run:
+To begin training from scratch, first ensure models/best is empty. Modify hyperparameters found in modules/config.py as desired. Note that hyperparameters related to tree search are found instead in cppconnect/include/Config.h and require recompilation after changing. Then simply run:
 
 ```bash
 python main.py
 ```
 
-This will create concurrent training, self-play, and evaluation instances. You can watch the training process by monitoring the logs:
+This will create concurrent training, self-play, and evaluation instances. You can stop training by pressing Ctrl+C in the terminal; it may take a few minutes for all processes to terminate. You can watch the training process by monitoring the logs:
 
 ![example](./images/training_logs.png)
+
+The following is an overview of what each process does:
+
+### Self-play
+
+Generates games for the model process to train on. It is embarrassingly parallel as each self-play instance is independent of the others; you will want to create as many as is feasible since training data is the bottleneck. Each process uses the current best model and sends game data to the model process consisting of move history, policy history, and game result. 
+
+### Evaluation
+
+Waits until notified by model process of a new model to test. Plays this latest model against current best model for a number of games and saves it as new best model if it wins above some threshold. Notifies self-play processes of new best model.
+
+### Training
+
+Performs standard CNN training, with a few differences. There is no validation step and epochs run continuously. Data is given by a custom keras.utils.Sequence class which keeps the latest max_saved_games, overwriting old games. New games are continuously saved as they arrive from self-play processes. A single data point consists of a board state, its calculated policy, and the game result. A batch is assembled by randomly choosing games weighted by their length, then randomly choosing a board state for each game, with a 50% chance for each board state of being mirrored. Checkpoints occur after a given number of epochs, where the model is saved for the evaluation process to test. Learning rate undergoes cosine annealing, and after a checkpoint the learning rate is re-calibrated in the following way: train the model for a number of epochs while increasing the learning rate and noting the loss. If graphed we would see the loss decrease, level out, and then increase or become unstable. The learning rate is chosen corresponding to a value within this loss 'valley'.
 
 ## Optimizing and comparing different hyperparameters
 
@@ -53,11 +67,11 @@ optimize.py will train the model while sampling from a space of multiple hyperpa
 - l: learning rate, 0.0001 - 0.1
 - b: batch size, 64 - 2048
 
-tournament.py will pit any number of trained models against each other in a round-robin tournament. Place each model in models/tournament/ and number them starting from 0. Each pairing will play num_eval_games (set in cppconnect/include/Config.h). The results will be printed out in console, in a format that can be pasted into [BayesElo](https://www.remi-coulom.fr/Bayesian-Elo/) to calculate ratings.
+tournament.py will pit any number of trained models against each other in a round-robin tournament. Place each model in models/tournament and number them starting from 0. Each pairing will play num_eval_games (set in cppconnect/include/Config.h). The results will be printed out in console, in a format that can be pasted into [BayesElo](https://www.remi-coulom.fr/Bayesian-Elo/) to calculate ratings.
 
 ![example](./images/tournament.png)
 
 ## Possible extensions
 
-- Making the game harder: bigger board size, connect more than 4
+- Making the game harder: bigger board size, connect more than 4, 3D board, allowing removal of pieces (PopOut variant)
 - Learning without needing to know the rules of the game: [MuZero](https://en.wikipedia.org/wiki/MuZero)
